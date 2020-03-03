@@ -1,7 +1,7 @@
 class Dot {
     constructor() {
         this.availableColors = ['red', 'blue']
-        this.color = "";
+        this.color = '';
         this.setRandomColor();
         this.selected = false;
         // Dot.prototype.dotCount += 1;
@@ -26,14 +26,14 @@ class Dot {
 class Board {
     constructor() {
         this.boardSize = 5;
-        this.dots = [];
+        this.dots = new Array();
         for (let i = 0; i < this.boardSize; i++) {
-            this.dots.push([]);
+            this.dots.push(new Array());
             for (let j = 0; j < this.boardSize; j++) {
                 this.dots[i][j] = new Dot();
             }
         }
-        this.selectionChain = {};
+        this.selectionChain = new Array();
     }
     removeDot(x, y) {
         this.dots[x][y] = null;
@@ -41,10 +41,11 @@ class Board {
     findDotAbove(x, y) {
         for (let yy = y - 1; yy >= 0; yy--) {
             if (this.dots[x, yy] != null) {
-                return yy;
+                return yy;    
             }
         }
     }
+    // drops the dot above INTO x,y space
     falldown(x, y) {
         // let theDot = this.dots[x][y];
         // this.dots[x][y] = null;
@@ -84,19 +85,19 @@ class Board {
     }
     addSelection(x, y) {
         this.selectionChain.push({
-            "x": x,
-            "y": y,
-            "dot": this.dots[x][y]
+            'x': x,
+            'y': y,
+            'dot': this.dots[x][y]
         })
     }
     canBeSelected(x, y) {
-        if (selectionChain === []) {
+        if (this.selectionChain.length === 0) {
             return true;
         } else if (
-            selectionChain !== [] &&
-            this.isAdjacentTo() === true &&
-            this.dots[x][y].color === selectionChain.peek().color &&
-            this.selectionChain.includes(this.dots[x, y])
+            this.selectionChain.length !== 0 &&
+            this.isAdjacentTo(x, y, selectionChain.peekBack().x, selectionChain.peekBack().y) === true &&
+            this.dots[x][y].color === this.selectionChain.peek().color &&
+            this.dots[x][y].selected === false
         ) {
             return true;
         } else if (this.dots[x][y].selected === true) {
