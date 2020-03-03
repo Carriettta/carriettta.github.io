@@ -7,11 +7,14 @@
     margin: 1px;
 }
 
-.selected {
-    height: 20px;
-    width: 20px;
+.red {
     background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.selected {
     border-radius: 30%;
-    display: inline-block;
-    
 }
