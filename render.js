@@ -30,7 +30,7 @@ function drawBoard(board) {
     for (x = 0; x < board.boardSize; x++) {
         for (y = 0; y < board.boardSize; y++) {
             let lastDotInRow = (y == board.boardSize - 1);
-            drawDot(board.dots[x][y], lastDotInRow, x, y);
+            drawDot(board.dots[y][x], lastDotInRow, y, x);
         }
     }
 }

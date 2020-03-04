@@ -47,7 +47,7 @@ class Board {
     }
     // drops the dot above INTO x,y space
     falldown(x, y) {
-        if (this.dots[x][y] != null) {
+        if (this.dots[x][y] == null) {
             let yy = this.findDotAbove(x, y);
             if (yy != null) {
                 this.dots[x][y] = this.dots[x][yy];
@@ -57,9 +57,6 @@ class Board {
             }
         }
     }
-    // let theDot = this.dots[x][y];
-    // this.dots[x][y] = null;
-    // this.dots[x+1][y] = theDot;
     everythingFalls() {
         for (let x = this.boardSize - 1; x >= 0; x--) {
             for (let y = this.boardSize - 1; y >= 0; y--) {
@@ -111,6 +108,10 @@ class Board {
             this.addSelection(x, y);
             this.dots[x][y].selected = true;
         }
+        // if (this.dots[x][y].selected === true) {
+        //     this.dots[x][y].selected = false;
+        //     this.selectionChain.pop()
+        // }
     }
     endRound() {
         if (this.selectionChain.length >= 2) {

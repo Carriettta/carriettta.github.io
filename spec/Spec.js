@@ -23,7 +23,6 @@ describe('`Dot` class', () => {
             expect(typeof dot.setRandomColor).toEqual('function');
         });
         it('should select a random color from the available colors', () => {
-            // setRandomCOlor is called in the constructor
             expect(dot.availableColors.includes(dot.color)).toEqual(true);
         });
     });
@@ -118,16 +117,24 @@ describe('`Board` class', () => {
         it('declare a `addSelection` method', () => {
             expect(typeof board.addSelection).toEqual('function');
         });
-        // it('should add selected dot to `selectionChain`', () => {
-
-        // });
+        it('should add selected dot to `selectionChain`', () => {
+            var dotToSelect = [{
+                x: 1,
+                y: 3,
+                dot: board.dots[1][3]
+            }]
+            board.addSelection(1, 3);
+            expect(board.selectionChain).toEqual(dotToSelect)
+        });
     });
     describe('`canBeSelected` function', () => {
         it('declare a `canBeSelected` method', () => {
             expect(typeof board.canBeSelected).toEqual('function');
         });
+        // random :(
         // it('should decide if the dot can be selected', () => {
-
+        //     board.select(1,1);
+        //     expect(board.canBeSelected(1,2)).toBe(true)
         // });
     });
     describe('`select` function', () => {
@@ -135,6 +142,14 @@ describe('`Board` class', () => {
             expect(typeof board.select).toEqual('function');
         });
         // it('should add select a dot', () => {
+
+        // });
+    });
+    describe('`endRound` function', () => {
+        it('declare a `endRound` method', () => {
+            expect(typeof board.endRound).toEqual('function');
+        });
+        // it('should delete the selected dots', () => {
 
         // });
     });
