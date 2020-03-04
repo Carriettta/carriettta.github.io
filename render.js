@@ -41,5 +41,5 @@ document.querySelector('#endRound').onclick = function () {
     drawBoard(board);
 }
 document.querySelector('#newGame').onclick = function () {
-    
+
 }

@@ -40,25 +40,26 @@ class Board {
     }
     findDotAbove(x, y) {
         for (let yy = y - 1; yy >= 0; yy--) {
-            if (this.this.dots[x][yy] != null) {
+            if (this.dots[x][yy] != null) {
                 return yy;
             }
         }
     }
     // drops the dot above INTO x,y space
     falldown(x, y) {
-        // let theDot = this.dots[x][y];
-        // this.dots[x][y] = null;
-        // this.dots[x+1][y] = theDot;
-
-        let yy = this.findDotAbove(x, y);
-        if (yy != null) {
-            this.dots[x][y] = this.dots[x][yy];
-            this.dots[x][yy] = null;
-        } else {
-            this.dots[x][y] = new Dot();
+        if (this.dots[x][y] != null) {
+            let yy = this.findDotAbove(x, y);
+            if (yy != null) {
+                this.dots[x][y] = this.dots[x][yy];
+                this.dots[x][yy] = null;
+            } else {
+                this.dots[x][y] = new Dot();
+            }
         }
     }
+    // let theDot = this.dots[x][y];
+    // this.dots[x][y] = null;
+    // this.dots[x+1][y] = theDot;
     everythingFalls() {
         for (let x = this.boardSize - 1; x >= 0; x--) {
             for (let y = this.boardSize - 1; y >= 0; y--) {

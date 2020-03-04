@@ -1,3 +1,7 @@
+body {
+    text-align: center;
+}
+
 .dot {
     height: 20px;
     width: 20px;
