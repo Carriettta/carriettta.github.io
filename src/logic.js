@@ -40,8 +40,8 @@ class Board {
     }
     findDotAbove(x, y) {
         for (let yy = y - 1; yy >= 0; yy--) {
-            if (this.dots[x, yy] != null) {
-                return yy;    
+            if (this.this.dots[x][yy] != null) {
+                return yy;
             }
         }
     }
@@ -50,7 +50,7 @@ class Board {
         // let theDot = this.dots[x][y];
         // this.dots[x][y] = null;
         // this.dots[x+1][y] = theDot;
-        
+
         let yy = this.findDotAbove(x, y);
         if (yy != null) {
             this.dots[x][y] = this.dots[x][yy];
@@ -60,18 +60,17 @@ class Board {
         }
     }
     everythingFalls() {
-        for (let x = this.boardSize; x >= 0; x--) {
-            for (let y = this.boardSize; y >= 0; y--) {
-                falldown(x, y)
+        for (let x = this.boardSize - 1; x >= 0; x--) {
+            for (let y = this.boardSize - 1; y >= 0; y--) {
+                this.falldown(x, y)
             }
         }
     }
-    // slideDownFrom(rIndex, cIndex) {
-    //     for (let currRow = rIndex - 1; currRow >= 0; currRow--) {
-    //         this.dots[currRow + 1][cIndex] = this.dots[currRow][cIndex];
-    //     }
-    // }
     isAdjacentTo(x1, y1, x2, y2) {
+        x1 = parseInt(x1);
+        x2 = parseInt(x2);
+        y1 = parseInt(y1);
+        y2 = parseInt(y2);
         if (
             x1 === x2 && y1 === y2 - 1 ||
             x1 === x2 && y1 === y2 + 1 ||
@@ -94,9 +93,9 @@ class Board {
         if (this.selectionChain.length === 0) {
             return true;
         } else if (
-            this.selectionChain.length !== 0 &&
-            this.isAdjacentTo(x, y, selectionChain.peekBack().x, selectionChain.peekBack().y) === true &&
-            this.dots[x][y].color === this.selectionChain.peek().color &&
+            this.isAdjacentTo(x, y, this.selectionChain[this.selectionChain.length - 1].x,
+                this.selectionChain[this.selectionChain.length - 1].y) === true &&
+            this.dots[x][y].color === this.selectionChain[0].dot.color &&
             this.dots[x][y].selected === false
         ) {
             return true;
@@ -118,7 +117,8 @@ class Board {
                 let dot = this.selectionChain[i];
                 this.removeDot(dot.x, dot.y)
             }
-            everythingFalls()
+            this.everythingFalls()
+            this.selectionChain = new Array();
         }
     }
 }

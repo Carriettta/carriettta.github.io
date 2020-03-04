@@ -97,70 +97,45 @@ describe('`Board` class', () => {
             expect(board.dots[4][4]).toEqual(dotToFall);
         });
     });
-    // describe('`everythingFalls` function', () => {
-    //     it('declare a `everythingFalls` method', () => {
-    //         expect(typeof board.everythingFalls).toEqual('function');
-    //     });
-    //     // it('should make everything fall', () => {
+    describe('`everythingFalls` function', () => {
+        it('declare a `everythingFalls` method', () => {
+            expect(typeof board.everythingFalls).toEqual('function');
+        });
+        // it('should make everything fall', () => {
 
-    //     // });
-    // });
+        // });
+    });
+    describe('`isAdjacentTo` function', () => {
+        it('declare a `isAdjacentTo` method', () => {
+            expect(typeof board.isAdjacentTo).toEqual('function');
+        });
+        it('should be true of adjesent dots', () => {
+            expect(board.isAdjacentTo(2, 2, 4, 4)).toBe(false);
+            expect(board.isAdjacentTo(2, 2, 2, 3)).toBe(true);
+        });
+    });
+    describe('`addSelection` function', () => {
+        it('declare a `addSelection` method', () => {
+            expect(typeof board.addSelection).toEqual('function');
+        });
+        // it('should add selected dot to `selectionChain`', () => {
 
-    // // describe('slideDownFrom` function', () => {
-    // //     it('declare a `slideDownFrom` method', () => {   
-    // //         expect(typeof board.slideDownFrom).toEqual('function');
-    // //     });
-    // //     it('should slide down all dots above', () => {
-    // //         let toBeSlided = board.dots[0][4];
-    // //         let toBeSlided2 = board.dots[1][4];
-    // //         board.slideDownFrom(2,4);
+        // });
+    });
+    describe('`canBeSelected` function', () => {
+        it('declare a `canBeSelected` method', () => {
+            expect(typeof board.canBeSelected).toEqual('function');
+        });
+        // it('should decide if the dot can be selected', () => {
 
-    // //         expect(toBeSlided.dotSerialNumber).toBe(board.dots[1][4].dotSerialNumber);
-    // //         expect(toBeSlided2.dotSerialNumber).toBe(board.dots[2][4].dotSerialNumber);
+        // });
+    });
+    describe('`select` function', () => {
+        it('declare a `select` method', () => {
+            expect(typeof board.select).toEqual('function');
+        });
+        // it('should add select a dot', () => {
 
-    // //         let toBeSlided3 = board.dots[0][2];
-    // //         let toBeSlided4 = board.dots[1][2];
-    // //         let toBeSlided5 = board.dots[2][2];
-
-    // //         board.slideDownFrom(3,2);
-
-    // //         expect(toBeSlided3).toBe(board.dots[1][2]);
-    // //         expect(toBeSlided4).toBe(board.dots[2][2]);
-    // //         expect(toBeSlided5).toBe(board.dots[3][2]);
-
-    // //     });
-    // // });
-    // describe('`isAdjacentTo` function', () => {
-    //     it('declare a `isAdjacentTo` method', () => {
-    //         expect(typeof board.isAdjacentTo).toEqual('function');
-    //     });
-    //     it('should be true of adjesent dots', () => {
-    //         expect(board.isAdjacentTo(2, 2, 4, 4)).toBe(false);
-    //         expect(board.isAdjacentTo(2, 2, 2, 3)).toBe(true);
-    //     });
-    // });
-    // describe('`addSelection` function', () => {
-    //     it('declare a `addSelection` method', () => {
-    //         expect(typeof board.addSelection).toEqual('function');
-    //     });
-    //     // it('should add selected dot to `selectionChain`', () => {
-
-    //     // });
-    // });
-    // describe('`canBeSelected` function', () => {
-    //     it('declare a `canBeSelected` method', () => {
-    //         expect(typeof board.canBeSelected).toEqual('function');
-    //     });
-    //     // it('should decide if the dot can be selected', () => {
-
-    //     // });
-    // });
-    // describe('`select` function', () => {
-    //     it('declare a `select` method', () => {
-    //         expect(typeof board.select).toEqual('function');
-    //     });
-    //     // it('should add select a dot', () => {
-
-    //     // });
-    // });
+        // });
+    });
 });

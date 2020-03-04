@@ -1,13 +1,45 @@
 let dot = new Dot();
 let board = new Board();
 
-let $game = document.querySelector("#game");
+let $game = document.querySelector('#game');
 
-function drawDot() {
-    var $span = document.createElement("span");
+
+function drawDot(dot, isLastDotInRow, x, y) {
+    let $span = document.createElement('span');
+    $span.classList.add('dot');
+    if (dot !== null) {
+        $span.classList.add(dot.color);
+        if (dot.selected) {
+            $span.classList.add('selected');
+        }
+        $span.setAttribute('x', x);
+        $span.setAttribute('y', y);
+        $span.onclick = function () {
+            board.select(this.getAttribute('x'), this.getAttribute('y'));
+            drawBoard(board);
+        };
+    }
     $game.appendChild($span);
-    // $span.setAttribute("class", "dot");
+    if (isLastDotInRow) {
+        $game.appendChild(document.createElement('br'));
+    }
 }
 
-drawDot();
-// drawDot();
+function drawBoard(board) {
+    $game.innerHTML = '';
+    for (x = 0; x < board.boardSize; x++) {
+        for (y = 0; y < board.boardSize; y++) {
+            let lastDotInRow = (y == board.boardSize - 1);
+            drawDot(board.dots[x][y], lastDotInRow, x, y);
+        }
+    }
+}
+drawBoard(board);
+
+document.querySelector('#endRound').onclick = function () {
+    board.endRound();
+    drawBoard(board);
+}
+document.querySelector('#newGame').onclick = function () {
+    
+}
