@@ -1,6 +1,6 @@
 class Dot {
     constructor() {
-        this.availableColors = ['red', 'blue']
+        this.availableColors = ['green', 'white']
         this.color = '';
         this.setRandomColor();
         this.selected = false;
@@ -25,7 +25,7 @@ class Dot {
 
 class Board {
     constructor() {
-        this.boardSize = 5;
+        this.boardSize = 8;
         this.dots = new Array();
         for (let i = 0; i < this.boardSize; i++) {
             this.dots.push(new Array());
@@ -116,11 +116,22 @@ class Board {
     endRound() {
         if (this.selectionChain.length >= 2) {
             for (let i = 0; i < this.selectionChain.length; i++) {
-                let dot = this.selectionChain[i];
+                let dot = this.selectionChain[i]
                 this.removeDot(dot.x, dot.y)
             }
             this.everythingFalls()
-            this.selectionChain = new Array();
+            this.selectionChain = new Array()
+            Game.actualRound++
         }
+    }
+}
+class Game {
+    constructor() {
+        this.maxRounds = 10
+        this.actualRound = 1
+        this.score = 0
+    }
+    alert() {
+        alert(`Game over! Score: ${this.score}`);
     }
 }
