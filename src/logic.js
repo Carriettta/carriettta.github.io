@@ -142,6 +142,9 @@ class Game {
         this.score = this.score + this.board.pointsToAdd;
         if (this.maxRounds === this.actualRound) {
             alert(`Game over! Score: ${this.score}`)
+            this.board = new Board()
+            this.actualRound = 0
+        this.score = 0
         }
     }
 }

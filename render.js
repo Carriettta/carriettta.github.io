@@ -51,17 +51,6 @@ function drawBoard(board) {
     }
 }
 
-
-// document.querySelector('#endRound').onclick = function () {
-//     game.board.endRound();
-//     refresh()
-// }
-document.querySelector('#newGame').onclick = function () {
-    game.board.newGame();
-    refresh()
-    game.actualRound = 1;
-}
-
 function refresh() {
     document.querySelector('#actualRound').innerHTML = game.actualRound;
     document.querySelector('#maxRounds').innerHTML = game.maxRounds;
@@ -70,3 +59,13 @@ function refresh() {
     drawBoard(game.board);
 }
 refresh();
+
+// document.querySelector('#endRound').onclick = function () {
+//     game.board.endRound();
+//     refresh()
+// }
+// document.querySelector('#newGame').onclick = function () {
+//     game.board.newGame();
+//     refresh()
+//     game.actualRound = 1;
+// }
