@@ -52,13 +52,13 @@ function drawBoard(board) {
 }
 
 
-document.querySelector('#endRound').onclick = function () {
-    game.board.endRound();
-    drawBoard(board);
-}
+// document.querySelector('#endRound').onclick = function () {
+//     game.board.endRound();
+//     refresh()
+// }
 document.querySelector('#newGame').onclick = function () {
     game.board.newGame();
-    drawBoard(board);
+    refresh()
     game.actualRound = 1;
 }
 

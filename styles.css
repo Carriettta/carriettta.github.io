@@ -2,7 +2,7 @@ body {
     text-align: center;
     font-family: Arial, Verdana, Sans-serif;
     color: green;
-    background-color: rgb(211, 250, 153);
+    background-color: rgb(165, 206, 105);
     background-image: url(background.png);
     background-repeat: no-repeat;
     background-size: 100%;
@@ -10,7 +10,7 @@ body {
 
 button {
     background-color: green;
-    color: rgb(211, 250, 153);
+    color: rgb(165, 206, 105);
     border: none;
     display: inline-block;
     text-decoration: none;
