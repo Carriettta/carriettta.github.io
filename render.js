@@ -2,10 +2,10 @@ let dot = new Dot();
 let board = new Board();
 
 let $game = document.querySelector('#game');
+let mousePressed = false;
 
 function drawDot(dot, isLastDotInRow, x, y) {
     let $span = document.createElement('span');
-    let mousePressed = false;
     $span.classList.add('dot');
     if (dot !== null) {
         $span.classList.add(dot.color);
@@ -19,15 +19,14 @@ function drawDot(dot, isLastDotInRow, x, y) {
         //     drawBoard(board);
         // };
         $span.onmousedown = function () {
-            this.mousePressed = true;
+            mousePressed = true;
             board.select(this.getAttribute('x'), this.getAttribute('y'));
             drawBoard(board);
             console.log('mousedown')
         }
         $span.onmouseover = function () {
-            if (this.mousePressed === true) {
+            if (mousePressed === true) {
                 board.select(this.getAttribute('x'), this.getAttribute('y'));
-                drawBoard(board);
                 console.log('mouseover')
             }
         }
@@ -58,13 +57,4 @@ document.querySelector('#endRound').onclick = function () {
 }
 document.querySelector('#newGame').onclick = function () {
 
-}
-
-
-function mouseDown() {
-    $span.style.color = "red";
-}
-
-function mouseUp() {
-    $span.style.color = "green";
 }
