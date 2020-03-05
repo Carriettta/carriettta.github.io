@@ -1,5 +1,4 @@
 let dot = new Dot();
-let board = new Board();
 let game = new Game();
 
 let $game = document.querySelector('#game');
@@ -21,19 +20,19 @@ function drawDot(dot, isLastDotInRow, x, y) {
         // };
         $span.onmousedown = function () {
             mousePressed = true;
-            board.select(this.getAttribute('x'), this.getAttribute('y'));
-            drawBoard(board);
+            game.board.select(this.getAttribute('x'), this.getAttribute('y'));
+            refresh();
         }
         $span.onmouseover = function () {
             if (mousePressed === true) {
-                board.select(this.getAttribute('x'), this.getAttribute('y'));
-                drawBoard(board);
+                game.board.select(this.getAttribute('x'), this.getAttribute('y'));
+                refresh();
             }
         }
         $span.onmouseup = function () {
             mousePressed = false
-            board.endRound();
-            drawBoard(board);
+            game.endRound();
+            refresh();
         }
     }
     $game.appendChild($span);
@@ -51,16 +50,23 @@ function drawBoard(board) {
         }
     }
 }
-drawBoard(board);
+
 
 document.querySelector('#endRound').onclick = function () {
-    board.endRound();
+    game.board.endRound();
     drawBoard(board);
 }
 document.querySelector('#newGame').onclick = function () {
-
+    game.board.newGame();
+    drawBoard(board);
+    game.actualRound = 1;
 }
 
-document.querySelector('#actualRound').innerHTML = game.actualRound;
-document.querySelector('#maxRounds').innerHTML = game.maxRounds;
-document.querySelector('#score').innerHTML = game.score;
+function refresh() {
+    document.querySelector('#actualRound').innerHTML = game.actualRound;
+    document.querySelector('#maxRounds').innerHTML = game.maxRounds;
+    document.querySelector('#score').innerHTML = game.score;
+
+    drawBoard(game.board);
+}
+refresh();

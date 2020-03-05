@@ -121,15 +121,23 @@ class Board {
             }
             this.everythingFalls()
             this.selectionChain = new Array()
-            Game.actualRound++
+            
         }
+    }
+    newGame() {
+        this.dots = new Array();
     }
 }
 class Game {
     constructor() {
+        this.board = new Board()
         this.maxRounds = 10
         this.actualRound = 1
         this.score = 0
+    }
+    endRound() {
+        this.board.endRound();
+        this.actualRound++;
     }
     alert() {
         alert(`Game over! Score: ${this.score}`);
