@@ -26,14 +26,6 @@ describe('`Dot` class', () => {
             expect(dot.availableColors.includes(dot.color)).toEqual(true);
         });
     });
-    describe('`getColor` function', () => {
-        it('declare a `getColor` method', () => {
-            expect(typeof dot.getColor).toEqual('function');
-        });
-        it('should give back the color', () => {
-            expect(typeof dot.getColor()).toEqual('string');
-        });
-    });
     describe('`setSelected` function', () => {
         it('declare a `setSelected` method', () => {
             expect(typeof dot.setSelected).toEqual('function');

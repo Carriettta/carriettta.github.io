@@ -1,7 +1,7 @@
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
     body {
-        
+
         background-attachment: fixed;
         background-position: center bottom;
         background-size: cover;
@@ -41,6 +41,10 @@ button {
 
 .white {
     background-color: white;
+}
+
+.yellow {
+    background-color: yellow;
 }
 
 .red {

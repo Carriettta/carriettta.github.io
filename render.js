@@ -1,6 +1,5 @@
 let dot = new Dot();
 let game = new Game();
-
 let $game = document.querySelector('#game');
 let mousePressed = false;
 
@@ -14,10 +13,6 @@ function drawDot(dot, isLastDotInRow, x, y) {
         }
         $span.setAttribute('x', x);
         $span.setAttribute('y', y);
-        // $span.onclick = function () {
-        //     board.select(this.getAttribute('x'), this.getAttribute('y'));
-        //     drawBoard(board);
-        // };
         $span.onmousedown = function () {
             mousePressed = true;
             game.board.select(this.getAttribute('x'), this.getAttribute('y'));
@@ -55,13 +50,11 @@ function refresh() {
     document.querySelector('#actualRound').innerHTML = game.actualRound;
     document.querySelector('#maxRounds').innerHTML = game.maxRounds;
     document.querySelector('#score').innerHTML = game.score;
-
     drawBoard(game.board);
 }
 refresh();
 
-document.querySelector("body").onmouseup = function () {
-    console.log('mouseup')
+document.body.onmouseup = function () {
     mousePressed = false
     game.endRound();
     refresh();

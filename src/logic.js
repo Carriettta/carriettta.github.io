@@ -1,18 +1,14 @@
 class Dot {
     constructor() {
-        this.availableColors = ['green', 'white']
+        this.availableColors = ['green', 'white', 'yellow']
         this.color = '';
         this.setRandomColor();
         this.selected = false;
-        // Dot.prototype.dotCount += 1;
-        // this.dotSerialNumber = Dot.prototype.dotCount;
     }
     setRandomColor() {
         this.color = this.availableColors[Math.floor(Math.random() * this.availableColors.length)];
     }
-    getColor() {
-        return this.color;
-    }
+
     setSelected() {
         if (this.selected === false) {
             return this.selected = true;
@@ -21,11 +17,10 @@ class Dot {
         }
     }
 }
-// Dot.prototype.dotCount = 0;
 
 class Board {
     constructor() {
-        this.boardSize = 8;
+        this.boardSize = 9;
         this.dots = new Array();
         for (let i = 0; i < this.boardSize; i++) {
             this.dots.push(new Array());
@@ -49,7 +44,7 @@ class Board {
     }
     // drops the dot above INTO x,y space
     falldown(x, y) {
-        if (this.dots[x][y] == null) {
+        if (this.dots[x][y] === null) {
             let yy = this.findDotAbove(x, y);
             if (yy != null) {
                 this.dots[x][y] = this.dots[x][yy];
@@ -106,8 +101,8 @@ class Board {
         }
     }
     isInChain(dot) {
-        for (var i = 0; i < this.selectionChain.length - 2; ++i) {
-            if (this.selectionChain[i].dot == dot) {
+        for (var i = 0; i < this.selectionChain.length - 2; i++) {
+            if (this.selectionChain[i].dot === dot) {
                 return true;
             }
         }
@@ -117,7 +112,7 @@ class Board {
     removeAllOfColor(color) {
         for (let x = 0; x < this.boardSize; x++) {
             for (let y = 0; y < this.boardSize; y++) {
-                if (this.dots[x][y].color == color) {
+                if (this.dots[x][y].color === color) {
                     this.removeDot(x, y);
                 }
             }
@@ -150,12 +145,12 @@ class Board {
                 this.removeDot(dot.x, dot.y)
             }
             this.everythingFalls()
-            this.pointsToAdd = this.selectionChain.length
+            // this.pointsToAdd = this.selectionChain.length
             this.selectionChain = new Array()
             result = this.removedDotCount;
             this.removedDotCount = 0;
         }
-        if (this.selectionChain.length == 1) {
+        if (this.selectionChain.length === 1) {
             this.dots[this.selectionChain[0].x][this.selectionChain[0].y].selected = false;
             this.selectionChain = new Array();
         }
@@ -168,7 +163,7 @@ class Board {
 class Game {
     constructor() {
         this.board = new Board()
-        this.maxRounds = 3
+        this.maxRounds = 10
         this.actualRound = 0
         this.score = 0
     }
