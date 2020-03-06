@@ -34,9 +34,11 @@ class Board {
             }
         }
         this.selectionChain = new Array();
+        this.removedDotCount = 0;
     }
     removeDot(x, y) {
         this.dots[x][y] = null;
+        this.removedDotCount++;
     }
     findDotAbove(x, y) {
         for (let yy = y - 1; yy >= 0; yy--) {
@@ -103,17 +105,45 @@ class Board {
             return false;
         }
     }
+    isInChain(dot) {
+        for (var i = 0; i < this.selectionChain.length - 2; ++i) {
+            if (this.selectionChain[i].dot == dot) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    removeAllOfColor(color) {
+        for (let x = 0; x < this.boardSize; x++) {
+            for (let y = 0; y < this.boardSize; y++) {
+                if (this.dots[x][y].color == color) {
+                    this.removeDot(x, y);
+                }
+            }
+        }
+    }
     select(x, y) {
         if (this.canBeSelected(x, y) === true) {
             this.addSelection(x, y);
             this.dots[x][y].selected = true;
         }
-        // if (this.dots[x][y].selected === true) {
-        //     this.dots[x][y].selected = false;
-        //     this.selectionChain.pop()
-        // }
+        var currentDot = this.dots[x][y];
+        if (this.selectionChain.length > 2) {
+            if ((currentDot.selected === true) && this.isInChain(currentDot)) {
+                this.removeAllOfColor(currentDot.color);
+            }
+        }
+        if (this.selectionChain.length > 1) {
+            var twoBackInChain = this.selectionChain[this.selectionChain.length - 2].dot;
+            if (currentDot == twoBackInChain) {
+                var last = this.selectionChain.pop();
+                this.dots[last.x][last.y].selected = false;
+            }
+        }
     }
     endRound() {
+        var result = 0;
         if (this.selectionChain.length >= 2) {
             for (let i = 0; i < this.selectionChain.length; i++) {
                 let dot = this.selectionChain[i]
@@ -122,8 +152,14 @@ class Board {
             this.everythingFalls()
             this.pointsToAdd = this.selectionChain.length
             this.selectionChain = new Array()
-            
+            result = this.removedDotCount;
+            this.removedDotCount = 0;
         }
+        if (this.selectionChain.length == 1) {
+            this.dots[this.selectionChain[0].x][this.selectionChain[0].y].selected = false;
+            this.selectionChain = new Array();
+        }
+        return result;
     }
     newGame() {
         this.dots = new Array();
@@ -137,14 +173,15 @@ class Game {
         this.score = 0
     }
     endRound() {
-        this.board.endRound();
+        var score = this.board.endRound();
         this.actualRound++;
-        this.score = this.score + this.board.pointsToAdd;
+        this.score = this.score + score * 10;
         if (this.maxRounds === this.actualRound) {
+            refresh();
             alert(`Game over! Score: ${this.score}`)
             this.board = new Board()
-            this.actualRound = 0
-        this.score = 0
+            this.actualRound = 0;
+            this.score = 0
         }
     }
 }

@@ -60,12 +60,9 @@ function refresh() {
 }
 refresh();
 
-// document.querySelector('#endRound').onclick = function () {
-//     game.board.endRound();
-//     refresh()
-// }
-// document.querySelector('#newGame').onclick = function () {
-//     game.board.newGame();
-//     refresh()
-//     game.actualRound = 1;
-// }
+document.querySelector("body").onmouseup = function () {
+    console.log('mouseup')
+    mousePressed = false
+    game.endRound();
+    refresh();
+}
