@@ -101,7 +101,7 @@ class Board {
         }
     }
     isInChain(dot) {
-        for (var i = 0; i < this.selectionChain.length - 2; i++) {
+        for (let i = 0; i < this.selectionChain.length - 2; i++) {
             if (this.selectionChain[i].dot === dot) {
                 return true;
             }
@@ -123,29 +123,28 @@ class Board {
             this.addSelection(x, y);
             this.dots[x][y].selected = true;
         }
-        var currentDot = this.dots[x][y];
+        let currentDot = this.dots[x][y];
         if (this.selectionChain.length > 2) {
             if ((currentDot.selected === true) && this.isInChain(currentDot)) {
                 this.removeAllOfColor(currentDot.color);
             }
         }
         if (this.selectionChain.length > 1) {
-            var twoBackInChain = this.selectionChain[this.selectionChain.length - 2].dot;
+            let twoBackInChain = this.selectionChain[this.selectionChain.length - 2].dot;
             if (currentDot == twoBackInChain) {
-                var last = this.selectionChain.pop();
+                let last = this.selectionChain.pop();
                 this.dots[last.x][last.y].selected = false;
             }
         }
     }
     endRound() {
-        var result = 0;
+        let result = 0;
         if (this.selectionChain.length >= 2) {
             for (let i = 0; i < this.selectionChain.length; i++) {
                 let dot = this.selectionChain[i]
                 this.removeDot(dot.x, dot.y)
             }
             this.everythingFalls()
-            // this.pointsToAdd = this.selectionChain.length
             this.selectionChain = new Array()
             result = this.removedDotCount;
             this.removedDotCount = 0;
@@ -156,9 +155,6 @@ class Board {
         }
         return result;
     }
-    newGame() {
-        this.dots = new Array();
-    }
 }
 class Game {
     constructor() {
@@ -168,7 +164,7 @@ class Game {
         this.score = 0
     }
     endRound() {
-        var score = this.board.endRound();
+        let score = this.board.endRound();
         this.actualRound++;
         this.score = this.score + score * 10;
         if (this.maxRounds === this.actualRound) {
